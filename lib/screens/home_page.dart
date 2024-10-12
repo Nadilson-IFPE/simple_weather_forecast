@@ -93,7 +93,18 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 1,
+                  ),
+                  Text(
+                    "Toque no nome da cidade para escolher outra",
+                    style: GoogleFonts.lato(
+                      fontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                   Center(
                     child: Column(
