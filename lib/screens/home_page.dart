@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:simple_weather_forecast/screens/forecast_screen.dart';
 import 'package:simple_weather_forecast/services/weather_forecast_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -190,12 +191,14 @@ class _HomePageState extends State<HomePage> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        /*  Navigator.push(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ForecastScreen(),
+                            builder: (context) => ForecastScreen(
+                              city: _city,
+                            ),
                           ),
-                        ); */
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF1A2344),
