@@ -26,7 +26,7 @@ class WeatherForecastService {
       return json.decode(response.body);
     } else {
       throw Exception(
-          'Falha ao carregar dados sobre a previsão do tempo dos últimos 7 dias!');
+          'Falha ao carregar dados sobre a previsão do tempo os próximos 7 dias!');
     }
   }
 
