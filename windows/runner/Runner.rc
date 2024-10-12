@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.nadilson.simpleweatherforecastapp" "\0"
-            VALUE "FileDescription", "simple_weather_forecast" "\0"
+            VALUE "FileDescription", "Previsão do Tempo" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "simple_weather_forecast" "\0"
+            VALUE "InternalName", "Previsão do Tempo" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.nadilson.simpleweatherforecastapp. All rights reserved." "\0"
             VALUE "OriginalFilename", "simple_weather_forecast.exe" "\0"
-            VALUE "ProductName", "simple_weather_forecast" "\0"
+            VALUE "ProductName", "Previsão do Tempo" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

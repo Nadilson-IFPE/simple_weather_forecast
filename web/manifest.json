@@ -1,6 +1,6 @@
 {
-    "name": "simple_weather_forecast",
-    "short_name": "simple_weather_forecast",
+    "name": "Previsão do Tempo",
+    "short_name": "Previsão do Tempo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
