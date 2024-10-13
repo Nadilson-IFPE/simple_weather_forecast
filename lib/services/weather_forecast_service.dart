@@ -27,7 +27,6 @@ class WeatherForecastService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      final error = jsonDecode(response.body) as Map<String, dynamic>;
       throw Exception(
         'Falha ao carregar dados sobre a previsão do tempo para os próximos 7 dias!\n\Resposta do servidor da Weather API:\n\n${jsonDecode(response.body)['error']['message']}',
       );
