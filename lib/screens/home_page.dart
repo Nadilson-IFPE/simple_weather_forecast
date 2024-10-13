@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   end: Alignment.bottomCenter,
                   colors: [
                     Color(0xFF1A2344),
-                    Color.fromARGB(255, 125, 32, 142),
+                    Color.fromARGB(255, 78, 32, 142),
                     Colors.purple,
                     Color.fromARGB(255, 151, 44, 170),
                   ],
@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                         backgroundColor: const Color(0xFF1A2344),
                       ),
                       child: const Text(
-                        "Previsão (7 dias)",
+                        "Previsão para 7 dias",
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -238,7 +238,19 @@ class _HomePageState extends State<HomePage> {
         },
       );
     } catch (e) {
-      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+            style: const TextStyle(color: Colors.white),
+          ),
+          duration: const Duration(seconds: 10),
+          backgroundColor: Color.fromARGB(255, 45, 15, 87),
+          behavior: SnackBarBehavior.floating,
+          elevation: 30,
+          margin: const EdgeInsets.all(20),
+        ),
+      );
     }
   }
 
@@ -306,81 +318,83 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Informe a cidade:"),
-          content: SizedBox(
-            height: 250,
-            child: Column(
-              children: [
-                FocusScope(
-                  child: TypeAheadField(
-                    suggestionsCallback: (pattern) async {
-                      /* print(
-                          'Buscando sugestões para: $pattern'); // Log de entrada
-                      final suggestions = await _weatherForecastService
-                          .fetchCitySuggestions(pattern);
-                      print(
-                          'Sugestões recebidas: $suggestions'); // Log da resposta
-                      return suggestions; */
+        return Container(
+          child: AlertDialog(
+            title: const Text("Informe a cidade:"),
+            content: SizedBox(
+              height: 250,
+              child: Column(
+                children: [
+                  FocusScope(
+                    child: TypeAheadField(
+                      suggestionsCallback: (pattern) async {
+                        /* print(
+                            'Buscando sugestões para: $pattern'); // Log de entrada
+                        final suggestions = await _weatherForecastService
+                            .fetchCitySuggestions(pattern);
+                        print(
+                            'Sugestões recebidas: $suggestions'); // Log da resposta
+                        return suggestions; */
 
-                      return await _weatherForecastService
-                          .fetchCitySuggestions(pattern);
-                    },
-                    itemBuilder: (context, suggestion) {
-                      return ListTile(
-                        title: Text(suggestion['name']),
-                      );
-                    },
-                    onSelected: (city) {
-                      _city = city['name'];
-                      _dialogController?.text = city['name'];
-                      setState(() {});
+                        return await _weatherForecastService
+                            .fetchCitySuggestions(pattern);
+                      },
+                      itemBuilder: (context, suggestion) {
+                        return ListTile(
+                          title: Text(suggestion['name']),
+                        );
+                      },
+                      onSelected: (city) {
+                        _city = city['name'];
+                        _dialogController?.text = city['name'];
+                        setState(() {});
 
-                      FocusScope.of(context).unfocus();
-                    },
-                    errorBuilder: (context, error) =>
-                        const Text('Erro ao carregar lista!'),
-                    loadingBuilder: (context) =>
-                        const Text('Aguardando lista de sugestões...'),
-                    emptyBuilder: (context) =>
-                        const Text('Nenhum item encontrado!'),
-                    builder: (context, controller, focusNode) {
-                      _dialogController = controller;
-                      return TextField(
-                        controller: controller,
-                        focusNode: focusNode,
-                        autofocus: true,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Cidade",
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _city = value;
-                          });
-                        },
-                      );
-                    },
+                        FocusScope.of(context).unfocus();
+                      },
+                      errorBuilder: (context, error) =>
+                          const Text('Erro ao carregar lista!'),
+                      loadingBuilder: (context) =>
+                          const Text('Aguardando lista de sugestões...'),
+                      emptyBuilder: (context) =>
+                          const Text('Nenhum item encontrado!'),
+                      builder: (context, controller, focusNode) {
+                        _dialogController = controller;
+                        return TextField(
+                          controller: controller,
+                          focusNode: focusNode,
+                          autofocus: true,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Cidade",
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _city = value;
+                            });
+                          },
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _fetchCityWeather();
+                },
+                child: const Text("Enviar"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Cancelar"),
+              ),
+            ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                _fetchCityWeather();
-              },
-              child: const Text("Enviar"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text("Cancelar"),
-            ),
-          ],
         );
       },
     );

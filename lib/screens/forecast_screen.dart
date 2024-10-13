@@ -173,7 +173,19 @@ class _ForecastScreenState extends State<ForecastScreen> {
         },
       );
     } catch (e) {
-      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+            style: const TextStyle(color: Colors.white),
+          ),
+          duration: const Duration(seconds: 10),
+          backgroundColor: Color.fromARGB(255, 45, 15, 87),
+          behavior: SnackBarBehavior.floating,
+          elevation: 30,
+          margin: const EdgeInsets.all(20),
+        ),
+      );
     }
   }
 }
